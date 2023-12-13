@@ -11,7 +11,8 @@ class HttpRequest
     begin
       request = Net::HTTP::Get.new(@uri.request_uri)
       request['Content-Type'] = 'application/json'
-      http.request(request)
+      response = @http.request(request)
+      JSON.parse(response.body)
     rescue
       # TODO: send error to a bug reporter service
     end
