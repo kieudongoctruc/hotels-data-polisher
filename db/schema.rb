@@ -10,8 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_10_151118) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_13_173139) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.integer "amenity_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "iso_alpha2_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hotels", id: :string, force: :cascade do |t|
+    t.integer "destination_id", null: false
+    t.string "name"
+    t.text "description"
+    t.text "booking_conditions", array: true
+    t.float "lat"
+    t.float "lng"
+    t.string "address"
+    t.string "city"
+    t.integer "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_hotels_on_destination_id"
+    t.index ["id"], name: "index_hotels_on_id"
+  end
+
+  create_table "hotels_amenities", force: :cascade do |t|
+    t.bigint "hotel_id"
+    t.bigint "amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_hotels_amenities_on_amenity_id"
+    t.index ["hotel_id"], name: "index_hotels_amenities_on_hotel_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "link"
+    t.string "description"
+    t.integer "image_type"
+    t.string "hotel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

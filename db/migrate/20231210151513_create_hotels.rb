@@ -3,20 +3,21 @@ class CreateHotels < ActiveRecord::Migration[7.1]
     create_table :hotels, id: false do |t|
       t.string :id, null: false
       t.integer :destination_id, null: false
-      t.string :name, null: false
+      t.string :name
       t.text :description
       t.text :details
       t.text :info
       t.text :booking_conditions, array: true
       t.float :lat
-      t.float :long
+      t.float :lng
       t.string :address
       t.string :city
-      t.integer :country_id, null: false
+      t.integer :country_id
 
       t.timestamps
-      t.index ["name"], name: "index_hotels_on_name"
+
       t.index ["id"], name: "index_hotels_on_id"
+      t.index ["destination_id"], name: "index_hotels_on_destination_id"
     end
   end
 end

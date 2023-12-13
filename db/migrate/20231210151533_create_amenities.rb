@@ -1,7 +1,8 @@
-class CreateImages < ActiveRecord::Migration[7.1]
+class CreateAmenities < ActiveRecord::Migration[7.1]
   def change
     create_table :amenities do |t|
       t.string :name
+      t.integer :amenity_type
 
       t.timestamps
     end

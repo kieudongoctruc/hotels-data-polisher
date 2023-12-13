@@ -1,2 +1,0 @@
-class Facility < ApplicationRecord
-end
