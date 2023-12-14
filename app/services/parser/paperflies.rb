@@ -1,5 +1,5 @@
 module Parser
-  class PaperFlies < Parser::Base
+  class Paperflies < Parser::Base
 
     def id
       hotel[:hotel_id]
@@ -42,12 +42,13 @@ module Parser
       hotel[:images]&.each do |image_type, images_array|
         images_array.each do |image_data|
           image = {}
-          image.image_type = image_type
-          image.link = image_data[:link]
-          image.description = image_data[:caption]
-          @iamges << image
+          image[:image_type] = image_type
+          image[:link] = image_data[:link]
+          image[:description] = image_data[:caption]
+          @images << image
         end
       end
+      super
     end
   end
 end

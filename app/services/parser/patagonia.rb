@@ -39,12 +39,13 @@ module Parser
       hotel[:images]&.each do |image_type, images_array|
         images_array.each do |image_data|
           image = {}
-          image.image_type = image_type
-          image.link = image_data[:url]
-          image.description = image_data[:description]
-          @iamges << image
+          image[:image_type] = image_type
+          image[:link] = image_data[:url]
+          image[:description] = image_data[:description]
+          @images << image
         end
       end
+      super
     end
   end
 end

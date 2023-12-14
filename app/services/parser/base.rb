@@ -15,11 +15,12 @@ module Parser
         lng: lng,
         address: address,
         city: city,
-        country: country,
+        country_id: country&.id,
+        postal_code: postal_code,
         description: description,
         amenities: amenities,
-        booking_conditions: booking_conditions
-        # images: images
+        booking_conditions: booking_conditions,
+        images: images
       }
     end
 
@@ -66,7 +67,7 @@ module Parser
     def images
       return nil if @images.blank?
 
-      Image.create(@images)
+      @images
     end
   end
 end
