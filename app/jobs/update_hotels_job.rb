@@ -3,9 +3,10 @@ class UpdateHotelsJob < ApplicationJob
 
   def perform(hotel_batch, supplier_name)
     hotel_batch.each do |uncleaned_object|
-      parsed_attributes = "Parser::#{supplier_name}".constantize.new(uncleaned_object).attributes
-      parsed_attributes.delete_if { |attr| attr.blank? }
-      SaveService.new(parsed_attributes).call
+        parsed_attributes = "Parser::#{supplier_name}".constantize.new(uncleaned_object).attributes
+        SaveService.new(parsed_attributes).call
+        # TODO: logs
+        # TODO: logs
     end
   end
 end
