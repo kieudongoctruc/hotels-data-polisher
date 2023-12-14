@@ -1,5 +1,5 @@
 class Amenity < ApplicationRecord
-  has_many :hotels_amenities
+  has_many :hotels_amenities, dependent: :destroy
   has_many :hotels, through: :hotels_amenities
 
   enum amenity_type: [:general, :room]
