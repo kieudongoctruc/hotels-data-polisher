@@ -36,6 +36,8 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 
 gem "sidekiq", "~> 7.2"
+gem "kaminari", "~> 1.2"
+gem "active_model_serializers"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
