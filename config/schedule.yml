@@ -1,6 +1,9 @@
-hotels_data_processor:
-  cron: '0 7,14,21 * * * Asia/Singapore'
-  class: 'ProductFeedGenerator'
-  queue: lowest
-  apartment: lx_default
-  args: ['lx_default']
+update_hotels_from_acme:
+  cron: '0 0 1 * * Asia/Singapore'
+  class: 'FetchFromAcmeSupplierJob'
+update_hotels_from_patagonia:
+  cron: '0 1 1 * * Asia/Singapore'
+  class: 'FetchFromPatagoniaSupplierJob'
+update_hotels_from_paperflies:
+  cron: '0 2 1 * * Asia/Singapore'
+  class: 'FetchFromPatagoniaSupplierJob'
