@@ -78,7 +78,5 @@ RSpec.describe HotelSerializer, type: :serializer do
         expect(subject[:location][:country]).to be_nil
       end
     end
-
-    # Add more edge cases based on your application requirements
   end
 end

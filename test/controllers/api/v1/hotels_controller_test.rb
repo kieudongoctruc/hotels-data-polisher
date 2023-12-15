@@ -6,7 +6,6 @@ RSpec.describe Api::V1::HotelsController, type: :controller do
       let(:valid_params) { { page_size: 10, page_number: 1 } }
 
       before do
-        # Create some hotels in the database to test with
         create_list(:hotel, 15)
       end
 

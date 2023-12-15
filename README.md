@@ -1,5 +1,4 @@
 # hotels-data-polisher
-# README
 
 #### Prerequisites
 * Ruby version
@@ -30,6 +29,7 @@ $ rake setup:hotels_updater_and_polisher
 
 ```
 
+#### Start application
 * Start Database connection
 ```sh
 $ /opt/homebrew/opt/postgresql@14/bin/postgres -D /opt/homebrew/var/postgresql@14
@@ -54,11 +54,16 @@ $ rails s
 ```
 {host}/api/v1/hotels
 ```
-query: `id` or `destination_id` this can be single or array
+query: `id` or `destination_id` this can be single or array.
+
 For example:
+```
 http://localhost:3000/api/v1/hotels?id=iJhz
+```
 or
+```
 http://localhost:3000/api/v1/hotels?id[]=iJhz&id[]=SjyX
+```
 
 #### Optimization
 ```
