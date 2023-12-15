@@ -1,8 +1,9 @@
 class SaveService
   attr_accessor :attributes
 
-  def initialize(attributes)
+  def initialize(attributes, supplier)
     @attributes = attributes.delete_if { |_k, v| v.blank? }
+    @supplier = supplier
   end
 
   def call
@@ -17,14 +18,30 @@ class SaveService
       end
 
       # update amenities
-      if attributes[:amenities].present?
-        hotel.amenity_ids = hotel.amenity_ids + attributes[:amenities].ids
+      amenity_ids = attributes[:amenity_ids] - hotel.amenity_ids
+      if amenity_ids.present?
+        hotel.amenities << Amenity.where(id: amenity_ids)
+        attributes.delete(:amenity_ids)
       end
 
       hotel.update(attributes)
-    rescue => exception
-      puts exception
-      # TODO: add logs
+      ActivityLog.create(
+        name: "Updated #{hotel.id} - #{hotel.name} succesfully",
+        log: {
+          attributes: attributes.merge(amenity_ids: amenity_ids)
+        },
+        from: @supplier
+      )
+    rescue Exception => exception
+      ActivityLog.create(
+        name: exception.message,
+        log: {
+          message: exception.full_message,
+          backtrace: exception.backtrace.join("\n"),
+          cause: exception.cause
+        },
+        from: @supplier
+      )
     end
   end
 end

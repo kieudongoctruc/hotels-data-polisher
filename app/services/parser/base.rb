@@ -18,7 +18,7 @@ module Parser
         country_id: country&.id,
         postal_code: postal_code,
         description: description,
-        amenities: amenities,
+        amenity_ids: amenities,
         booking_conditions: booking_conditions,
         images: images
       }
@@ -59,9 +59,9 @@ module Parser
     end
 
     def amenities
-      return nil if @amenities.blank?
+      return [] if @amenities.blank?
 
-      Amenity.where(name: @amenities)
+      Amenity.where(name: @amenities).ids
     end
 
     def images
