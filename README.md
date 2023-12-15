@@ -21,6 +21,11 @@ $ bundle install
 
 #### Database creation
 ```sh
+- make sure postgres running
+$ createdb
+
+$ createdb hotels_data_polisher_development
+
 $ rake db:migrate
 
 $ rails db:seed
@@ -65,7 +70,11 @@ or
 http://localhost:3000/api/v1/hotels?id[]=iJhz&id[]=SjyX
 ```
 
-#### Optimization
+* Response example
+![Alt text](response_example.png)
+
+
+## Optimization
 ```
 On top of what I have implemented, we can consider:
  - Elastisearch or Typesense as a database storage, this can help to boost speed of data retrieval or scalability
